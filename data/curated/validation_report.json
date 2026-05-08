@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-05-07T03:44:24.591897Z",
+  "checks": {
+    "file_existence": {
+      "status": "PASSED",
+      "details": "all files exist"
+    },
+    "row_consistency": {
+      "status": "PASSED",
+      "details": "raw=1000 staged=1000 curated=1000",
+      "counts": {
+        "raw": 1000,
+        "staged": 1000,
+        "curated": 1000
+      }
+    },
+    "feature_completeness": {
+      "status": "PASSED",
+      "details": "found 14 expected feature columns"
+    },
+    "target_integrity": {
+      "status": "PASSED",
+      "details": "failure rate: 37.40%"
+    },
+    "feature_sanity": {
+      "status": "PASSED",
+      "details": ""
+    },
+    "log_integrity": {
+      "status": "PASSED",
+      "details": "all pipeline stage mentions found"
+    }
+  },
+  "overall_status": "PASSED",
+  "ready_for_ml": true
+}

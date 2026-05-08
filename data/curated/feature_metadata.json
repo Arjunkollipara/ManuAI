@@ -1,0 +1,100 @@
+{
+  "feature_columns": [
+    "air_temp_k",
+    "process_temp_k",
+    "rotational_speed_rpm",
+    "torque_nm",
+    "tool_wear_min",
+    "temp_difference",
+    "power",
+    "tool_wear_rate",
+    "temp_wear_interaction",
+    "high_torque_flag",
+    "high_wear_flag",
+    "type_encoded",
+    "failure_risk_score"
+  ],
+  "target_column": "machine_failure",
+  "total_rows": 1000,
+  "failure_rate_percent": 37.4,
+  "feature_stats": {
+    "air_temp_k": {
+      "mean": 299.9980490291028,
+      "std": 2.9256447725914234,
+      "min": 295.00188399556583,
+      "max": 304.99713804155914
+    },
+    "process_temp_k": {
+      "mean": 310.1747867688369,
+      "std": 2.8358448884689293,
+      "min": 305.0044278143721,
+      "max": 314.9954391871909
+    },
+    "rotational_speed_rpm": {
+      "mean": 1516.036,
+      "std": 291.11151248963,
+      "min": 1003.0,
+      "max": 1999.0
+    },
+    "torque_nm": {
+      "mean": 49.32842169306665,
+      "std": 17.069571941945252,
+      "min": 20.011191690239787,
+      "max": 79.85108787036049
+    },
+    "tool_wear_min": {
+      "mean": 123.015,
+      "std": 72.3784137364173,
+      "min": 0.0,
+      "max": 249.0
+    },
+    "temp_difference": {
+      "mean": 10.176737739734149,
+      "std": 4.1490601833880305,
+      "min": 0.4047471061182364,
+      "max": 19.55293611993102
+    },
+    "power": {
+      "mean": 74684.24260599354,
+      "std": 29700.878361345454,
+      "min": 21525.56252962511,
+      "max": 158439.94252117304
+    },
+    "tool_wear_rate": {
+      "mean": 0.08380269613082382,
+      "std": 0.052993171896879805,
+      "min": 0.0,
+      "max": 0.23076923076923078
+    },
+    "temp_wear_interaction": {
+      "mean": 36917.3326521635,
+      "std": 21733.335656583396,
+      "min": 0.0,
+      "max": 75657.21644599992
+    },
+    "high_torque_flag": {
+      "mean": 0.323,
+      "std": 0.46762271116788157,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "high_wear_flag": {
+      "mean": 0.197,
+      "std": 0.3977323220458705,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "type_encoded": {
+      "mean": 0.487,
+      "std": 0.6706944162582539,
+      "min": 0.0,
+      "max": 2.0
+    },
+    "failure_risk_score": {
+      "mean": 0.5202677966516858,
+      "std": 0.16316511344103166,
+      "min": 0.16558892534814723,
+      "max": 1.0
+    }
+  }
+}

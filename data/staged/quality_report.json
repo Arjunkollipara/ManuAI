@@ -1,0 +1,15 @@
+{
+  "total_rows": 1000,
+  "duplicate_rows_removed": 0,
+  "nulls_filled": {},
+  "range_violations": {
+    "air_temp_k": 0,
+    "process_temp_k": 0,
+    "rotational_speed_rpm": 0,
+    "torque_nm": 0,
+    "tool_wear_min": 0
+  },
+  "flagged_rows": 0,
+  "clean_rows": 1000,
+  "validation_status": "PASSED"
+}

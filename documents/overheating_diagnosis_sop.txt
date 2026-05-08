@@ -1,0 +1,27 @@
+Standard Operating Procedure: Motor and Compressor Overheating Diagnosis
+
+Purpose: This SOP defines the safe method for diagnosing overheating on industrial motors, compressors, pumps, turbines, and related drive systems. Overheating may indicate overload, poor lubrication, blocked cooling, misalignment, electrical imbalance, process restriction, or bearing deterioration.
+
+Safety warnings: Treat overheating as a potential fire, pressure, and stored energy hazard. Use lockout/tagout before opening panels, guards, fan covers, or coolant circuits. Wear safety glasses, insulated gloves for electrical checks, heat-resistant gloves near hot surfaces, hearing protection, and safety shoes. Do not touch housings, discharge lines, or bearing caps without confirming surface temperature.
+
+Temperature thresholds and alarms: For standard TEFC motors, frame temperatures below 70 C are normally acceptable during steady operation. Alarm at 80 C, high alarm at 90 C, and critical shutdown at 100 C unless the equipment nameplate or OEM manual specifies otherwise. Compressor discharge temperature should normally remain below 105 C; alarm at 110 C and shutdown at 120 C. Bearing housings above 80 C require immediate investigation.
+
+Immediate response: If smoke, burning odor, visible arcing, lubricant boiling, rapid temperature rise greater than 10 C in five minutes, abnormal noise, or vibration above alarm level is present, stop the equipment immediately from the local station or control room. If temperature is elevated but stable and production risk is low, reduce load and monitor every five minutes while diagnostics continue.
+
+Diagnostic steps:
+1. Confirm the asset tag, current load, speed, product, ambient temperature, and alarm history.
+2. Compare local infrared readings with PLC, SCADA, and sensor values.
+3. Check motor current on all phases; phase imbalance above 2 percent requires electrical investigation.
+4. Verify voltage, frequency, VFD cooling status, and drive fault codes.
+5. Inspect cooling fan rotation, fan guards, filters, louvers, and heat exchanger surfaces.
+6. Check lubricant level, viscosity, contamination, and recent greasing records.
+7. Inspect coupling alignment, belt tension, soft foot, and signs of mechanical rubbing.
+8. Review suction and discharge pressures for compressor overload or blocked process flow.
+9. Check vibration trends for bearing, imbalance, looseness, or cavitation signatures.
+10. Confirm ambient ventilation and remove temporary obstructions around the equipment.
+
+Cooling system checklist: Verify fan blades are intact, airflow direction is correct, filters are clean, water or glycol flow is available, strainer differential pressure is normal, cooling valves are open, fins are not fouled, and temperature sensors are seated properly.
+
+Preventive measures: Keep cooling passages clean, lubricate to schedule, maintain alignment, avoid operation beyond rated load, trend current and temperature weekly, and review seasonal ambient conditions. Replace clogged filters before high ambient months.
+
+Documentation requirements: Record the fault time, temperature values, load, current, vibration, corrective actions, shutdown decision, parts used, and follow-up owner in the maintenance management system before returning the asset to service.

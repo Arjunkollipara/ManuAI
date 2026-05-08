@@ -1,0 +1,35 @@
+Standard Operating Procedure: Bearing Inspection and Replacement
+
+Equipment: This procedure applies to rolling element bearings installed on industrial motors, compressors, turbines, pumps, and coupled drive trains in manufacturing service.
+
+Safety warnings: Only trained maintenance personnel may perform this work. Apply lockout/tagout to all electrical, pneumatic, hydraulic, steam, and stored energy sources before opening guards or housings. Verify zero energy with an approved meter and try-start test. Wear safety glasses, cut-resistant gloves, hearing protection, safety shoes, and heat-resistant gloves when working near recently operated equipment. Do not loosen bearing housings on rotating or hot machinery.
+
+Tools required: calibrated torque wrench, dial indicator, vibration meter, infrared thermometer, bearing puller or induction heater, feeler gauges, micrometer, alignment tool, clean lint-free cloths, approved grease, solvent, replacement bearing, seals, shims, and maintenance log form.
+
+Inspection procedure:
+1. Confirm equipment tag number, operating history, and reported symptom.
+2. Verify lockout/tagout and remove guards only after zero energy is proven.
+3. Inspect bearing housing for cracks, looseness, leaks, corrosion, and missing fasteners.
+4. Check lubricant level, color, contamination, and grease consistency.
+5. Rotate the shaft by hand and listen for grinding, clicking, or uneven resistance.
+6. Measure radial and axial play with a dial indicator and compare with OEM limits.
+7. Inspect shaft and coupling alignment; record soft foot or misalignment readings.
+8. Review vibration readings for elevated velocity, acceleration, or bearing defect frequencies.
+9. Check recent temperature trends; sustained bearing housing temperature above 80 C requires action.
+10. Document findings, photos, and recommendation before disassembly.
+
+Replacement procedure:
+1. Mark coupling position, housing orientation, shims, and sensor locations.
+2. Remove guards, coupling elements, seals, caps, and bearing housing hardware.
+3. Support the shaft to prevent bending or seal damage.
+4. Remove the bearing using a puller on the inner race, or heat the bearing evenly with an induction heater.
+5. Clean the shaft journal and housing bore; inspect for scoring, fretting, or out-of-round condition.
+6. Verify replacement bearing part number, clearance class, and seal type.
+7. Heat the new bearing to 90-110 C, then install squarely against the shoulder.
+8. Pack or fill lubricant to the specified quantity; do not over-grease.
+9. Reinstall caps, seals, shims, coupling, and guards in the marked orientation.
+10. Torque M10 housing bolts to 45 Nm, M12 bolts to 80 Nm, M16 bolts to 195 Nm, and coupling set screws to 20-35 Nm unless OEM values differ.
+
+Post-maintenance checks: Rotate by hand, verify free movement, restore guards, remove lockout/tagout, jog the motor, and run unloaded for 10 minutes. Confirm vibration is below 4.5 mm/s RMS, bearing temperature stabilizes below 70 C, lubricant does not leak, and alignment remains within 0.05 mm.
+
+Escalate to a senior technician if the shaft is scored, bearing fit is loose, vibration remains high after replacement, housing temperature rises rapidly, repeated failures occur within 90 days, or OEM torque and clearance data are unavailable.

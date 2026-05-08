@@ -1,0 +1,63 @@
+name: Deploy Manufacturing Suite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline to generate data
+        run: |
+          python pipeline/ingest.py
+          python pipeline/transform.py
+          python pipeline/feature_engineer.py
+          python pipeline/validate.py
+          python ml/train.py
+
+      - name: Run tests
+        run: pytest tests/ -v
+
+      - name: Initialize RAG
+        run: |
+          python -c "
+          from rag.vector_store import initialize_vector_store
+          initialize_vector_store()
+          print('RAG initialized')
+          "
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t manufacturing-suite .
+
+      - name: Tag image
+        run: |
+          docker tag manufacturing-suite \
+            ${{ secrets.REGISTRY_URL }}/manufacturing-suite:latest
+
+  # deploy job commented out until Azure is configured
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy to Azure App Service
+  #       ...

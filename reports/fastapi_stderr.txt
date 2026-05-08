@@ -1,0 +1,26 @@
+2026-05-07 00:39:25,428 - api.database.connection - INFO - Database connection established with URL: sqlite:///./manufacturing.db
+C:\Users\arjun\Desktop\manufatoring_analysis_predictions\manufacturing-suite\env\Lib\site-packages\pydantic\_internal\_config.py:386: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [11880]
+INFO:     Waiting for application startup.
+2026-05-07 00:39:29,597 - api.security - INFO - Loaded environment settings (masked): {'AZURE_OPENAI_KEY': '***', 'AZURE_OPENAI_ENDPOINT': 'https://your-resource.openai.azure.com/', 'AZURE_OPENAI_DEPLOYMENT': 'gpt-4o', 'AZURE_OPENAI_API_VERSION': '2024-02-01', 'AZURE_SQL_CONNECTION_STRING': '***', 'AZURE_AI_SEARCH_KEY': '***', 'AZURE_AI_SEARCH_ENDPOINT': 'https://your-search.search.windows.net', 'AZURE_AI_SEARCH_INDEX': 'manufacturing-docs', 'AZURE_KEY_VAULT_URL': 'https://your-keyvault.vault.azure.net/', 'AZURE_CLIENT_ID': 'your_client_id', 'AZURE_CLIENT_SECRET': '***', 'AZURE_TENANT_ID': 'your_tenant_id', 'ENVIRONMENT': 'development', 'DATABASE_URL': 'sqlite:///./manufacturing.db', 'LOG_LEVEL': 'INFO', 'API_VERSION': '1.0.0'}
+2026-05-07 00:39:29,598 - api.security - INFO - Environment validation missing_required=[]
+Environment: development
+2026-05-07 00:39:29,598 - api.main - INFO - Environment: development
+Azure OpenAI: True
+2026-05-07 00:39:29,598 - api.main - INFO - Azure OpenAI: True
+Azure Search: True
+2026-05-07 00:39:29,598 - api.main - INFO - Azure Search: True
+Database tables created successfully
+2026-05-07 00:39:29,600 - api.main - INFO - Database tables created successfully
+2026-05-07 00:39:29,600 - ml.predict - INFO - Initializing ModelPredictor
+2026-05-07 00:39:29,600 - ml.evaluate - INFO - Loading model from ml/models/random_forest.pkl
+2026-05-07 00:39:29,658 - ml.evaluate - INFO - Model loaded successfully from ml/models/random_forest.pkl
+2026-05-07 00:39:29,658 - ml.predict - INFO - ModelPredictor initialized successfully
+ModelPredictor initialized successfully
+2026-05-07 00:39:29,658 - api.main - INFO - ModelPredictor initialized successfully
+Application startup complete
+2026-05-07 00:39:29,659 - api.main - INFO - Application startup complete
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8010 (Press CTRL+C to quit)

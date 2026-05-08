@@ -1,0 +1,14 @@
+/* CSS Variables for dark industrial theme */
+:root {
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #121212;
+    --color-bg-card: rgba(255, 255, 255, 0.06);
+    --color-primary: #00d8ff; /* cyan accent */
+    --color-primary-dark: #0099b3;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-border: rgba(255,255,255,0.12);
+    --font-family: 'Inter', sans-serif;
+    --radius: 8px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.4);
+}

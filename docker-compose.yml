@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: manufacturing-api
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+    environment:
+      - ENVIRONMENT=development
+      - PORT=${PORT:-8000}
+      - DATABASE_URL=sqlite:///./data/manufacturing.db
+      - AZURE_OPENAI_KEY=${AZURE_OPENAI_KEY}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
+      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}
+      - AZURE_AI_SEARCH_KEY=${AZURE_AI_SEARCH_KEY}
+      - AZURE_AI_SEARCH_ENDPOINT=${AZURE_AI_SEARCH_ENDPOINT}
+      - AZURE_SQL_CONNECTION_STRING=${AZURE_SQL_CONNECTION_STRING}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./ml/models:/app/ml/models
+      - ./documents:/app/documents
+      - ./reports:/app/reports
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:${PORT:-8000}/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

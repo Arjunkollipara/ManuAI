@@ -1,0 +1,30 @@
+app_name: manufacturing-suite
+resource_group: manufacturing-rg
+location: eastus
+environment: production
+
+services:
+  app_service:
+    name: manufacturing-api
+    sku: B1
+    python_version: "3.11"
+    startup_command: "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1 --proxy-headers --forwarded-allow-ips='*' --access-log --log-level info"
+
+  azure_sql:
+    server: manufacturing-sql-server
+    database: manufacturing-db
+    sku: Basic
+
+  azure_openai:
+    resource_name: manufacturing-openai
+    deployment_name: gpt-4o
+    model: gpt-4o
+
+  azure_ai_search:
+    name: manufacturing-search
+    sku: free
+    index_name: manufacturing-docs
+
+  azure_key_vault:
+    name: manufacturing-kv
+    sku: standard

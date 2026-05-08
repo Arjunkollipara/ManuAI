@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManuAI | Operations Cockpit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="backdrop backdrop--one"></div>
+  <div class="backdrop backdrop--two"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#overview">
+        <span class="brand-mark">M</span>
+        <span>
+          <strong>ManuAI</strong>
+          <small>Operations Cockpit</small>
+        </span>
+      </a>
+
+      <nav class="topnav">
+        <a href="#overview" class="topnav-link">Overview</a>
+        <a href="#dashboard" class="topnav-link">Dashboard</a>
+        <a href="#prediction" class="topnav-link">Predict</a>
+        <a href="#agents" class="topnav-link">Chat</a>
+        <a href="#search" class="topnav-link">Search</a>
+        <a href="#status" class="topnav-link">Status</a>
+      </nav>
+
+      <div class="topbar-meta">
+        <span class="status-chip"><span class="dot" id="apiHealthDot"></span><span id="apiHealthText">Checking API</span></span>
+        <button class="ghost-btn" data-scroll="#agents">Open chat</button>
+      </div>
+    </header>
+
+    <main class="page">
+      <section id="overview" class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Predictive maintenance and factory intelligence</p>
+          <h1>Less dashboard clutter. More control, faster decisions.</h1>
+          <p class="lede">
+            A focused operations cockpit for live predictions, agent chat, search, and service health.
+            The chat is always reachable, the charts are readable, and the controls are grouped around real work.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" data-scroll="#prediction">Run prediction</button>
+            <button class="secondary-btn" data-scroll="#agents">Start chat</button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="mini-stat">
+              <span class="mini-stat__label">Readings</span>
+              <strong id="heroReadings">0</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat__label">Alerts</span>
+              <strong id="heroAlerts">0</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat__label">Risk</span>
+              <strong id="heroRisk">0%</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="glass-card hero-card">
+            <div class="card-head">
+              <span class="badge cyan">Live system</span>
+              <span class="muted">Updated in real time</span>
+            </div>
+            <h2>Operational snapshot</h2>
+            <div class="snapshot-list">
+              <div><span>Backend</span><strong id="snapshotBackend">Checking</strong></div>
+              <div><span>Model</span><strong id="snapshotModel">Checking</strong></div>
+              <div><span>RAG</span><strong id="snapshotRag">Checking</strong></div>
+              <div><span>Agent stack</span><strong id="snapshotAgent">Checking</strong></div>
+            </div>
+          </div>
+
+          <div class="glass-card hero-card hero-card--accent">
+            <div class="card-head">
+              <span class="badge green">Quick action</span>
+              <span class="muted">No page hop required</span>
+            </div>
+            <h2>Ask the maintenance agent</h2>
+            <p>Use the chat panel to ask about failures, SOPs, or why a prediction is high risk.</p>
+            <button class="primary-btn primary-btn--full" data-scroll="#agents">Jump to chat</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="section-stack">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2>Live metrics and operational signals</h2>
+          </div>
+          <button class="secondary-btn" id="refreshDashboardBtn">Refresh now</button>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="kpi-card panel">
+            <span class="kpi-label">Total sensor readings</span>
+            <strong class="kpi-value" id="statReadings">0</strong>
+            <span class="kpi-note" id="statReadingsNote">Latest ingest run</span>
+          </article>
+          <article class="kpi-card panel">
+            <span class="kpi-label">Active alerts</span>
+            <strong class="kpi-value" id="statAlerts">0</strong>
+            <span class="kpi-note" id="statAlertsNote">Open predictive events</span>
+          </article>
+          <article class="kpi-card panel">
+            <span class="kpi-label">Failure rate</span>
+            <strong class="kpi-value" id="statFailureRate">0%</strong>
+            <span class="kpi-note" id="statFailureNote">Database-derived</span>
+          </article>
+          <article class="kpi-card panel">
+            <span class="kpi-label">Model status</span>
+            <strong class="kpi-value" id="statModel">Online</strong>
+            <span class="kpi-note" id="statModelNote">Predictor ready</span>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel chart-panel">
+            <div class="section-head">
+              <h3>Risk distribution</h3>
+              <span class="muted">Latest 50 predictions</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="riskChart" height="220"></canvas>
+            </div>
+          </section>
+
+          <section class="panel chart-panel">
+            <div class="section-head">
+              <h3>Sensor trend</h3>
+              <span class="muted">Torque and speed</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="sensorChart" height="220"></canvas>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <h3>Live alert feed</h3>
+            <span class="muted">Automatically refreshed</span>
+          </div>
+          <div id="alertFeed" class="feed-grid"></div>
+        </section>
+      </section>
+
+      <section id="prediction" class="section-stack">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Prediction</p>
+            <h2>Run a risk analysis in one place</h2>
+          </div>
+        </div>
+
+        <div class="prediction-layout">
+          <form class="panel prediction-form" id="predictionForm">
+            <div class="field-row">
+              <label for="machineType">Machine type</label>
+              <div class="segmented" id="machineTypeGroup">
+                <button type="button" class="segment is-active" data-value="L">L</button>
+                <button type="button" class="segment" data-value="M">M</button>
+                <button type="button" class="segment" data-value="H">H</button>
+              </div>
+              <input type="hidden" id="machineType" value="M" />
+            </div>
+
+            <label class="range-field">
+              <span>Air temperature <strong id="airTempVal">305 K</strong></span>
+              <input id="airTemp" type="range" min="290" max="320" value="305" />
+            </label>
+            <label class="range-field">
+              <span>Process temperature <strong id="processTempVal">315 K</strong></span>
+              <input id="processTemp" type="range" min="300" max="330" value="315" />
+            </label>
+            <label class="range-field">
+              <span>Rotational speed <strong id="rotSpeedVal">1800 RPM</strong></span>
+              <input id="rotSpeed" type="range" min="500" max="3000" value="1800" />
+            </label>
+            <label class="range-field">
+              <span>Torque <strong id="torqueVal">50 Nm</strong></span>
+              <input id="torque" type="range" min="0" max="100" value="50" />
+            </label>
+            <label class="range-field">
+              <span>Tool wear <strong id="toolWearVal">120 min</strong></span>
+              <input id="toolWear" type="range" min="0" max="300" value="120" />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn" id="predictBtn">Analyze machine</button>
+              <span class="muted">Saves to the prediction history by default</span>
+            </div>
+          </form>
+
+          <aside class="panel prediction-result">
+            <div class="section-head">
+              <h3>Result</h3>
+              <span class="muted">Live explanation</span>
+            </div>
+            <div id="predictionResult" class="result-empty">
+              Submit the form to view the failure probability, risk level, and top factors.
+            </div>
+            <div class="history-preview">
+              <div class="section-head">
+                <h3>Recent predictions</h3>
+                <span class="muted">Latest history rows</span>
+              </div>
+              <div id="predictionHistory" class="history-list"></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="agents" class="section-stack">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Chat</p>
+            <h2>Ask the maintenance, analytics, or ML agent</h2>
+          </div>
+        </div>
+
+        <div class="chat-layout">
+          <section class="panel chat-panel">
+            <div class="section-head">
+              <h3>Agent conversation</h3>
+              <span class="muted" id="agentSystemStatus">Checking credentials</span>
+            </div>
+
+            <div class="agent-switcher" id="agentCards">
+              <button type="button" class="agent-card is-active" data-agent="maintenance">
+                <span class="badge green">Maintenance</span>
+                <strong>Fixes and SOPs</strong>
+                <p>Best for repair steps, downtime causes, and operational guidance.</p>
+              </button>
+              <button type="button" class="agent-card" data-agent="analytics">
+                <span class="badge cyan">Analytics</span>
+                <strong>Trends and KPIs</strong>
+                <p>Best for performance summaries, anomaly patterns, and chart questions.</p>
+              </button>
+              <button type="button" class="agent-card" data-agent="ml_insight">
+                <span class="badge amber">ML insight</span>
+                <strong>Model reasoning</strong>
+                <p>Best for interpreting risk scores and feature contributions.</p>
+              </button>
+            </div>
+
+            <div class="chat-window" id="chatMessages" aria-live="polite"></div>
+
+            <div class="chat-presets" id="chatPresets">
+              <button type="button" class="preset-chip">Why is failure risk high?</button>
+              <button type="button" class="preset-chip">What maintenance should happen next?</button>
+              <button type="button" class="preset-chip">Summarize today&apos;s anomalies</button>
+            </div>
+
+            <div class="chat-input">
+              <textarea id="agentInput" rows="3" placeholder="Ask about a machine, a failure, or a maintenance step."></textarea>
+              <div class="chat-actions">
+                <span class="muted" id="agentHint">Replies use the selected agent context.</span>
+                <button type="button" class="primary-btn" id="agentSendBtn">Send message</button>
+              </div>
+            </div>
+          </section>
+
+          <aside class="panel side-stack">
+            <div class="stack-card">
+              <div class="section-head">
+                <h3>Agent status</h3>
+                <span class="muted">CrewAI layer</span>
+              </div>
+              <div class="status-list">
+                <div><span>Active agent</span><strong id="currentAgentName">Maintenance</strong></div>
+                <div><span>Used by backend</span><strong id="agentUsed">Waiting</strong></div>
+                <div><span>Response time</span><strong id="agentLatency">-</strong></div>
+                <div><span>Availability</span><strong id="agentStatus">Checking</strong></div>
+              </div>
+            </div>
+
+            <div class="stack-card">
+              <div class="section-head">
+                <h3>System health</h3>
+                <span class="muted">Auto-checked</span>
+              </div>
+              <div class="status-list">
+                <div><span>Backend</span><strong id="svcBackend">-</strong></div>
+                <div><span>Database</span><strong id="svcDatabase">-</strong></div>
+                <div><span>RAG</span><strong id="svcRag">-</strong></div>
+                <div><span>OpenAI</span><strong id="svcAzureOpenAI">-</strong></div>
+                <div><span>Search</span><strong id="svcAzureSearch">-</strong></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="search" class="section-stack">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Search</p>
+            <h2>Find maintenance docs and SOP fragments</h2>
+          </div>
+        </div>
+
+        <div class="panel search-panel">
+          <div class="search-bar">
+            <input id="searchInput" type="text" placeholder="Search maintenance manuals, SOPs, and guides..." />
+            <button type="button" class="primary-btn" id="searchBtn">Search</button>
+          </div>
+          <div class="muted">Try keywords like bearing, lubrication, calibration, or vibration.</div>
+          <div id="searchResults" class="results-grid"></div>
+        </div>
+      </section>
+
+      <section id="status" class="section-stack">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Status</p>
+            <h2>Platform and environment readiness</h2>
+          </div>
+        </div>
+
+        <div class="status-grid">
+          <article class="panel status-card">
+            <h3>Backend</h3>
+            <strong id="snapshotBackendCard">-</strong>
+            <p>Health and runtime response</p>
+          </article>
+          <article class="panel status-card">
+            <h3>Model</h3>
+            <strong id="snapshotModelCard">-</strong>
+            <p>Prediction engine state</p>
+          </article>
+          <article class="panel status-card">
+            <h3>RAG pipeline</h3>
+            <strong id="snapshotRagCard">-</strong>
+            <p>Document search availability</p>
+          </article>
+          <article class="panel status-card">
+            <h3>Agent stack</h3>
+            <strong id="snapshotAgentCard">-</strong>
+            <p>Multi-agent orchestration readiness</p>
+          </article>
+        </div>
+
+        <div class="panel config-panel">
+          <div class="section-head">
+            <h3>Configuration</h3>
+            <span class="muted">Fetched from /system/config</span>
+          </div>
+          <table class="config-table">
+            <tbody id="configTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
